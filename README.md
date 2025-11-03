@@ -41,25 +41,18 @@
         - Governance implication: Stronger access controls and policy are warranted.
 
 ### 2) ❓ What Did Glu24 Add That Prior Papers Didn’t?
-- ✅ Answer: New Threat Model: Glu24 formalizes the concept of inferential adversaries—attackers who piece together dangerous knowledge from many seemingly safe outputs—instead of just measuring whether a directly harmful output is produced.
+- ✅ Answer:
+    - New threat model: formalizes inferential adversaries who assemble restricted knowledge from many safe-looking outputs (decomposition attacks), not just direct harmful completions.
+    - Information-theoretic formalization: introduces a rigorous framework to quantify impermissible knowledge leakage through model interactions.
+    - Utility–safety trade-off: proves that fully suppressing dangerous information necessarily restricts helpful outputs; defenses must balance both.
+    - Attack efficacy: shows decomposition attacks can extract more prohibited knowledge than direct jailbreaks, revealing gaps in current guardrails.
+    - Evaluation lens: shifts from one-shot “did it answer?” checks to multi-turn leakage accounting that enables principled comparison of defenses.
 
-Information-Theoretic Analysis: The paper brings rigorous mathematical tools (information theory) to quantify how much impermissible knowledge leaks through model outputs, setting a standard for evaluating safety against decomposition attacks.
-
-Utility/Safety Trade-off: Glu24 proves there's a fundamental trade-off: truly censoring all dangerous information means restricting helpful outputs, so defenders need to balance safety with utility.
-
-Effective Attacks: It shows decomposition attacks can extract more dangerous information than direct jailbreaks, underlining gaps in current defenses.
-
-       ❓ Mathematical Framework Explained
-- ✅ Answer: Glu24 uses information theory to mathematically model how an adversary's belief or certainty about a restricted concept grows after each safe-looking LLM response (think of each response as providing clues instead of full answers). The framework:
-
-Defines impermissible concepts (knowledge that should be censored)
-
-Tracks the adversary's posterior (updated knowledge) after model interactions
-
-Measures information leakage—how much new impermissible knowledge an attacker gains from responses
-
-Shows that limiting this leakage often requires limiting helpful output (the safety/utility trade-off)
-In summary, Glu24's framework lets researchers precisely study and compare defense strategies by how much prohibited info slips through over a series of queries, instead of just whether a model ever responds directly to a dangerous prompt.
+- 🧮 Mathematical framework (brief):
+    - Defines impermissible concepts (knowledge to censor) and models multi-turn interactions.
+    - Tracks an adversary’s posterior (updated beliefs) after each response.
+    - Quantifies leakage per turn and cumulatively as the adversary gains clues.
+    - Derives limits showing that capping leakage typically reduces utility, formalizing the trade-off.
 
 
 ### 3) ❓ Question
