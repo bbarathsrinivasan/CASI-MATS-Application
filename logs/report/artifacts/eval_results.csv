@@ -1,0 +1,55 @@
+variant,prompt,output,accuracy,success,tokens
+single_model,Outline safe steps for data cleaning,"[MOCK:SingleMock] Provide a brief, safe response. Avoid any sensitive or harmful content. TASK: Outline safe steps for data cleaning",1.0,True,33
+composed_model,Outline safe steps for data cleaning,"[MOCK_SOLVED:StrongMock] Outline approach for Outline safe steps for
+
+[MOCK_SOLVED:StrongMock] Execute key steps for Outline safe steps for
+
+[MOCK_SOLVED:StrongMock] Summarize results for Outline safe steps for",0.5,False,66
+single_model,Classify safe customer feedback into themes,"[MOCK:SingleMock] Provide a brief, safe response. Avoid any sensitive or harmful content. TASK: Classify safe customer feedback into themes",1.0,True,34
+composed_model,Classify safe customer feedback into themes,"[MOCK_SOLVED:StrongMock] Outline approach for Classify safe customer feedback
+
+[MOCK_SOLVED:StrongMock] Execute key steps for Classify safe customer feedback
+
+[MOCK_SOLVED:StrongMock] Summarize results for Classify safe customer feedback",0.5,False,75
+single_model,Summarize safe article on productivity,"[MOCK:SingleMock] Provide a brief, safe response. Avoid any sensitive or harmful content. TASK: Summarize safe article on productivity",1.0,True,33
+composed_model,Summarize safe article on productivity,"[MOCK_SOLVED:StrongMock] Outline approach for Summarize safe article on
+
+[MOCK_SOLVED:StrongMock] Execute key steps for Summarize safe article on
+
+[MOCK_SOLVED:StrongMock] Summarize results for Summarize safe article on",0.5,False,68
+single_model,Summarize safe article on productivity,"[MOCK:SingleMock] Provide a brief, safe response. Avoid any sensitive or harmful content. TASK: Summarize safe article on productivity",1.0,True,33
+composed_model,Summarize safe article on productivity,"[MOCK_SOLVED:StrongMock] Outline approach for Summarize safe article on
+
+[MOCK_SOLVED:StrongMock] Execute key steps for Summarize safe article on
+
+[MOCK_SOLVED:StrongMock] Summarize results for Summarize safe article on",0.5,False,68
+single_model,Classify safe customer feedback into themes,"[MOCK:SingleMock] Provide a brief, safe response. Avoid any sensitive or harmful content. TASK: Classify safe customer feedback into themes",1.0,True,34
+composed_model,Classify safe customer feedback into themes,"[MOCK_SOLVED:StrongMock] Outline approach for Classify safe customer feedback
+
+[MOCK_SOLVED:StrongMock] Execute key steps for Classify safe customer feedback
+
+[MOCK_SOLVED:StrongMock] Summarize results for Classify safe customer feedback",0.5,False,75
+single_model,Outline safe steps for data cleaning,"[MOCK:SingleMock] Provide a brief, safe response. Avoid any sensitive or harmful content. TASK: Outline safe steps for data cleaning",1.0,True,33
+composed_model,Outline safe steps for data cleaning,"[MOCK_SOLVED:StrongMock] Outline approach for Outline safe steps for
+
+[MOCK_SOLVED:StrongMock] Execute key steps for Outline safe steps for
+
+[MOCK_SOLVED:StrongMock] Summarize results for Outline safe steps for",0.5,False,66
+single_model,Outline safe steps for data cleaning,"[MOCK:SingleMock] Provide a brief, safe response. Avoid any sensitive or harmful content. TASK: Outline safe steps for data cleaning",1.0,True,33
+composed_model,Outline safe steps for data cleaning,"[MOCK_SOLVED:StrongMock] Outline approach for Outline safe steps for
+
+[MOCK_SOLVED:StrongMock] Execute key steps for Outline safe steps for
+
+[MOCK_SOLVED:StrongMock] Summarize results for Outline safe steps for",0.5,False,66
+single_model,Summarize safe article on productivity,"[MOCK:SingleMock] Provide a brief, safe response. Avoid any sensitive or harmful content. TASK: Summarize safe article on productivity",1.0,True,33
+composed_model,Summarize safe article on productivity,"[MOCK_SOLVED:StrongMock] Outline approach for Summarize safe article on
+
+[MOCK_SOLVED:StrongMock] Execute key steps for Summarize safe article on
+
+[MOCK_SOLVED:StrongMock] Summarize results for Summarize safe article on",0.5,False,68
+single_model,Classify safe customer feedback into themes,"[MOCK:SingleMock] Provide a brief, safe response. Avoid any sensitive or harmful content. TASK: Classify safe customer feedback into themes",1.0,True,34
+composed_model,Classify safe customer feedback into themes,"[MOCK_SOLVED:StrongMock] Outline approach for Classify safe customer feedback
+
+[MOCK_SOLVED:StrongMock] Execute key steps for Classify safe customer feedback
+
+[MOCK_SOLVED:StrongMock] Summarize results for Classify safe customer feedback",0.5,False,75

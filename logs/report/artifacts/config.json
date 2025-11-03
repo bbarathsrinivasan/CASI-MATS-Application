@@ -1,0 +1,10 @@
+{
+  "trials": 3,
+  "seed": 123,
+  "models": {
+    "single": "SingleMock",
+    "weak": "WeakMock",
+    "strong": "StrongMock"
+  },
+  "introduction": "This report compares a single-model baseline to a composed pipeline using automated decomposition."
+}

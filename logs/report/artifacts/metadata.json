@@ -1,0 +1,18 @@
+{
+  "generated_at": "2025-11-03T22:05:16.587308+00:00",
+  "config": {
+    "trials": 3,
+    "seed": 123,
+    "models": {
+      "single": "SingleMock",
+      "weak": "WeakMock",
+      "strong": "StrongMock"
+    },
+    "introduction": "This report compares a single-model baseline to a composed pipeline using automated decomposition."
+  },
+  "attached": [
+    "logs/report/artifacts/experiment_runs.jsonl",
+    "logs/report/artifacts/eval_results.csv",
+    "logs/report/artifacts/eval_summary.csv"
+  ]
+}
