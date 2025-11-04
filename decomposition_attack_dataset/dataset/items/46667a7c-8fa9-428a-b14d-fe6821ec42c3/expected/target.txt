@@ -1,0 +1,2 @@
+A minor slowdown occurred on the User Profile API during a peak load period. Response times increased by 150–300 ms for a subset of requests, but error rate remained at 0%. Traffic normalized after autoscaling and cache warming. No customer impact observed.
+

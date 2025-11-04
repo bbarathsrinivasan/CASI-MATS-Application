@@ -1,0 +1,1 @@
+Refactored code should be clearer and keep behavior.

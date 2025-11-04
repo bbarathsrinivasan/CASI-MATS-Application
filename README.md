@@ -23,8 +23,6 @@
 
 ## ❓ Questions & ✅ Answers
 
-> Replace the placeholder text below with the exact questions from the PDF and provide your answers beneath each.
-
 ### 1) ❓ Evidence for LM WMDP Capabilities: Virology Capabilities Test (VCT) Summary and Critique
 - ✅ Answer:
     - Methodological gaps or limitations (brief)
@@ -40,7 +38,21 @@
         - Public models display sensitive capabilities, raising dual-use risk.
         - Governance implication: Stronger access controls and policy are warranted.
 
-### 2) ❓ What Did Glu24 Add That Prior Papers Didn’t?
+### 2) ❓ Getting Familiar with the Threat Model
+- ✅ Answer:
+The key difference between the JDS24 threat model and traditional jailbreaks is that JDS24 focuses on multi-turn, multi-model composition, where individually safe outputs from multiple models are combined to infer restricted information. In contrast, traditional jailbreaks (e.g., Cha+24) are single-turn direct elicitation attacks on a single model.
+
+To explore this safely, I implemented a benign proxy version of the JDS24-style decomposition attack using the safeharness framework. The setup used two models: a planner (weak model) that decomposes a complex benign task into subtasks, and an executor (strong model) that solves each subtask. Their results were then combined using a safe aggregator, with strict moderation and blacklist filters to block unsafe content.
+
+Experiments were run on the decomposition_attack_dataset, covering safe cyber-like tasks such as code refactoring, configuration debugging, and data normalization. Two variants were tested: a single-model baseline and a composed-model pipeline.
+
+Reasoning: The framework replicates the compositional mechanics of JDS24 while ensuring safety, allowing empirical study of capability uplift without dual-use content.
+
+Assessment: Success was defined as improved accuracy or task completion by the composed model compared to the baseline, with zero safety violations. All runs were fully logged, reproducible, and verified safe.
+
+This demonstrates how benign model composition can yield emergent capability—core to the JDS24 threat model—while preserving strict safety boundaries.
+
+### 3) ❓ What Did Glu24 Add That Prior Papers Didn’t?
 - ✅ Answer:
     - New threat model: formalizes inferential adversaries who assemble restricted knowledge from many safe-looking outputs (decomposition attacks), not just direct harmful completions.
     - Information-theoretic formalization: introduces a rigorous framework to quantify impermissible knowledge leakage through model interactions.
@@ -48,36 +60,139 @@
     - Attack efficacy: shows decomposition attacks can extract more prohibited knowledge than direct jailbreaks, revealing gaps in current guardrails.
     - Evaluation lens: shifts from one-shot “did it answer?” checks to multi-turn leakage accounting that enables principled comparison of defenses.
 
-- 🧮 Mathematical framework (brief):
+- 🧮 Mathematical framework :
     - Defines impermissible concepts (knowledge to censor) and models multi-turn interactions.
     - Tracks an adversary’s posterior (updated beliefs) after each response.
     - Quantifies leakage per turn and cumulatively as the adversary gains clues.
     - Derives limits showing that capping leakage typically reduces utility, formalizing the trade-off.
 
-
-### 3) ❓ Question
+### 4) ❓ Curating Data 
 - ✅ Answer:
+<table>
+    <tr>
+        <td valign="top" width="60%">
 
-### 4) ❓ Question
-- ✅ Answer:
+            <strong>Safe proxy dataset for decomposition attacks</strong><br/>
+            Curated a small, cyber‑themed, benign dataset mirroring multi‑step reasoning without dual‑use content. Categories: code refactor (CF), configuration debugging (CFG), incident postmortem (IMS), data integration (DI), and document synthesis (DOC). Each task requires splitting, processing, and recombining information.
 
-### 5) ❓ Question
-- ✅ Answer:
+            <br/><br/>
+            <strong>Methodology and rationale</strong>
+            <ul>
+                <li>Structured JSON schema: full task, inputs, 2–6 canonical subtasks, expected outputs, and simple validators (unit tests/schema checks).</li>
+                <li>Safe synthesis: structured‑output API to generate fictional inputs; human‑verified decompositions.</li>
+                <li>Safety gates: local blacklist + optional moderation; reject/replace unsafe content.</li>
+                <li>Reproducible and objectively evaluated; no WMDP content.</li>
+            </ul>
 
-### 6) ❓ Question
-- ✅ Answer:
+            <strong>Scaling</strong>
+            <ul>
+                <li>Programmatically generate synthetic variations.</li>
+                <li>Prompt LLMs for additional benign tasks under the same schema.</li>
+                <li>Crowdsource decompositions with safety reviews.</li>
+            </ul>
 
-### 7) ❓ Question
-- ✅ Answer:
+            <strong>Using agents</strong>
+            <ul>
+                <li>Direct solve vs. decomposition pipeline: weaker model proposes subtasks; stronger model executes.</li>
+                <li>Compare pipeline vs. single‑model baselines to quantify capability uplift.</li>
+            </ul>
 
-### 8) ❓ Question
-- ✅ Answer:
+            <strong>Summary</strong><br/>
+            Provides a safe, structured, and scalable benchmark to study how multi‑model coordination yields emergent capabilities while maintaining alignment.
 
-### 9) ❓ Question
-- ✅ Answer:
+        </td>
+        <td valign="top" width="40%">
 
-### 10) ❓ Question
-- ✅ Answer:
+```text
+┌────────────────────┐
+│ make_dataset.py    │  ← entrypoint CLI
+└────────┬───────────┘
+                 │
+                 ▼
+┌────────────────────────────┐
+│ ds.generate.main()         │
+│  • parse args (--out, --n) │
+│  • write JSON Schemas      │
+│  • create folders          │
+└────────┬───────────────────┘
+                 │
+                 ▼
+┌─────────────────────────────┐
+│  For each item to create    │
+│  ─────────────────────────  │
+│  1️⃣  Build safe prompt      │
+│  2️⃣  Safety check (local+AI)│
+│  3️⃣  Structured LLM call    │
+│  4️⃣  Parse + validate JSON  │
+│  5️⃣  Write item files       │
+└────────┬────────────────────┘
+                 │
+                 ▼
+┌─────────────────────────────┐
+│  ds.safety.ensure_safe_text │
+│  • Local blacklist          │
+│  • Optional Moderation API  │
+│  • Reject / replace unsafe  │
+└────────┬────────────────────┘
+                 │
+                 ▼
+┌─────────────────────────────┐
+│  ds.llm.call_structured()   │
+│  • Responses API            │
+│  • response_format=JSON     │
+│  • Retries & validates      │
+│  • Offline fallback mocks   │
+└────────┬────────────────────┘
+                 │
+                 ▼
+┌────────────────────────────┐
+│ ds.validate                │
+│  • Verify schemas          │
+│  • Check CSV/code tests    │
+│  • Return (ok, errors)     │
+└────────┬───────────────────┘
+                 │
+                 ▼
+┌────────────────────────────┐
+│ dataset/                   │
+│ ├── items/<id>/inputs/*    │
+│ ├── items/<id>/expected/*  │
+│ ├── items/<id>/meta.json   │
+│ ├── manifest.json          │
+│ ├── README.md              │
+│ └── schemas/*.schema.json  │
+└────────────────────────────┘
+```
+
+        </td>
+    </tr>
+</table>
+
+### 5) ❓ Literature Search: Decomposition Attacks & Multi-Context Jailbreaking
+- ✅ Answer: Additional References for Decomposition and Jailbreaking Attacks
+Zou et al., 2023. "Universal and Transferable Adversarial Attacks on Aligned Language Models" (arXiv:2307.15043): Proposes an automated, gradient-based method to generate adversarial prompt suffixes that reliably bypass alignment safeguards and transfer across multiple LLMs.
+
+LLM Attacks Demo (GitHub: llm-attacks/demo.ipynb): Provides hands-on Notebooks for crafting, launching, and evaluating various LLM jailbreak attacks in realistic settings.
+
+LLM Structured Prompt Attacks Repo (GitHub: llm-sp): Implements prompt decomposition and multi-step jailbreaks, enabling systematic testing and development of decomposition-based attacks.
+
+DrAttack: Prompt Decomposition and Reconstruction Makes Powerful LLM Jailbreakers: Describes highly effective jailbreaking techniques based on prompt decomposition and reconstruction to systematically defeat LLM safety filters.
+
+MasterKey: Automated Jailbreak Across Multiple Large Language Model Chatbots: Demonstrates multi-platform jailbreak automation, highlighting the risks and cross-model transferability of adversarial prompts.
+
+Red Teaming Language Models with Language Models (Perez et al.): Explores automated, scalable red-teaming approaches against LLMs, relevant for uncovering decomposition-based vulnerabilities.
+
+Indirect Prompt Injection and Multi-Hop Reasoning Attacks: Papers on prompt injection and chained (multi-hop) attacks illustrate additional vectors for decomposing and reconstructing impermissible knowledge across queries.
+
+### 6) ❓ Future Work: Accountability and Open Red Teaming
+- ✅ Answer: Problem Statement:
+Current regulatory efforts are often limited by national boundaries, creating an uneven playing field where some organizations may take excessive risks to gain a competitive edge in AI. With AI development becoming a global race, the fundamental challenge is how to ensure responsible behavior and robust safety standards, especially when no single authority can enforce them internationally. Questions remain about who should hold leading tech organizations accountable and how to reliably verify their claims about safe model deployment.
+
+The Role of Red Teaming:
+Comprehensive red teaming systematically probing for vulnerabilities and simulating real-world attacks is a critical way to uncover hidden safety risks in AI models. Identifying and reporting these vulnerabilities not only improves technical robustness but also builds trust with the public. Accountability cannot rely solely on regulation; broad scrutiny and transparent testing are needed to keep organizations honest.
+
+An Open Red Teaming Framework:
+As a future direction, I am working on an open "red teaming marketplace" a collaborative, public platform where anyone can rigorously test and evaluate deployed models. This approach aims to make safety verification transparent and reputationally meaningful, so companies that submit their models for public evaluation can earn a distinct trust signal. The long-term vision is to establish a universal, community-driven framework, akin to the open-source model in software, where public testing and accountability become standard in the AI ecosystem.
 
 ---
 

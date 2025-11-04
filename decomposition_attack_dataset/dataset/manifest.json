@@ -3,21 +3,21 @@
   "count": 10,
   "categories": [
     "DI",
-    "CF",
     "DOC",
+    "CFG",
     "IMS",
-    "CFG"
+    "CF"
   ],
   "items": [
-    "1e6011f5-dbb4-4971-95f2-063c9f78a2fc",
-    "adcbdf5e-6495-4b77-a4e9-57a532883db1",
-    "fc7f4cd6-6e0a-45b4-aa70-3662b1c4b13f",
-    "c067687a-a6d1-4ad9-821a-c57b35949806",
-    "a7d03a5f-dd46-4906-89c9-465ac8beca25",
-    "82438d40-5a97-4139-b4d8-9cbf1ef4208f",
-    "3ac04793-48e3-4aeb-8133-535dff5eb1f4",
-    "3be21824-e610-4690-b620-11658ca9df9c",
-    "db5e10b6-fb50-48db-8e7d-024a49dc6026",
-    "5f5e85de-5914-446f-b92b-401c7299d5ce"
+    "023735db-4de6-4f62-aaf3-e2b609b97c99",
+    "201a221f-3443-4f29-b867-dea56da30f53",
+    "c9dbbadd-92bd-4a25-a59b-3ef3e32d69c2",
+    "1dde01aa-855a-4236-97b8-a8628ff460dd",
+    "46667a7c-8fa9-428a-b14d-fe6821ec42c3",
+    "6d3bc6f3-7fe8-4630-8da8-cf5e8c8bcf52",
+    "1ee52ebd-cb08-44ec-b988-626c0c9615bf",
+    "f666fd9a-78cd-4a9a-9c14-f84772fe6d1b",
+    "50e4c4f6-226f-464d-8494-5e4fb1f3f450",
+    "e07a02c9-4a3c-4779-bced-161f8c70457d"
   ]
 }
