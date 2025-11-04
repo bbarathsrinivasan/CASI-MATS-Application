@@ -38,8 +38,23 @@
         - Public models display sensitive capabilities, raising dual-use risk.
         - Governance implication: Stronger access controls and policy are warranted.
 
-### 2) ❓ Question
+### 2) ❓ Getting Familiar with the Threat Model
 - ✅ Answer:
+The key difference between the JDS24 threat model and traditional jailbreaks is that JDS24 focuses on multi-turn, multi-model composition, where individually safe outputs from multiple models are combined to infer restricted information. In contrast, traditional jailbreaks (e.g., Cha+24) are single-turn direct elicitation attacks on a single model.
+
+To explore this safely, I implemented a benign proxy version of the JDS24-style decomposition attack using the safeharness framework. The setup used two models: a planner (weak model) that decomposes a complex benign task into subtasks, and an executor (strong model) that solves each subtask. Their results were then combined using a safe aggregator, with strict moderation and blacklist filters to block unsafe content.
+
+Experiments were run on the decomposition_attack_dataset, covering safe cyber-like tasks such as code refactoring, configuration debugging, and data normalization. Two variants were tested: a single-model baseline and a composed-model pipeline.
+
+Reasoning: The framework replicates the compositional mechanics of JDS24 while ensuring safety, allowing empirical study of capability uplift without dual-use content.
+
+Assessment: Success was defined as improved accuracy or task completion by the composed model compared to the baseline, with zero safety violations. All runs were fully logged, reproducible, and verified safe.
+
+This demonstrates how benign model composition can yield emergent capability—core to the JDS24 threat model—while preserving strict safety boundaries.
+
+As a related validation, I replicated a controlled, offline jailbreak of GPT‑2 using the universal adversarial suffix method from Zou et al. (2023) to study decomposition-style leakage in a benign proxy setup; no production systems were targeted. Reference: https://arxiv.org/abs/2307.15043
+https://colab.research.google.com/drive/119BEN0MqrBo1SrI6f6XKdn7lParAbYSB#scrollTo=wkPKFP7pdraA
+
 
 ### 3) ❓ What Did Glu24 Add That Prior Papers Didn’t?
 - ✅ Answer:
@@ -129,7 +144,8 @@ In summary, this dataset offers a safe, structured, and scalable benchmark for a
 └────────────────────────────┘
 
 ### 5) ❓ Literature Search: Decomposition Attacks & Multi-Context Jailbreaking
-- ✅ Answer: Additional References for Decomposition and Jailbreaking Attacks
+- ✅ Answer: 
+Additional References for Decomposition and Jailbreaking Attacks
 Zou et al., 2023. "Universal and Transferable Adversarial Attacks on Aligned Language Models" (arXiv:2307.15043): Proposes an automated, gradient-based method to generate adversarial prompt suffixes that reliably bypass alignment safeguards and transfer across multiple LLMs.
 
 LLM Attacks Demo (GitHub: llm-attacks/demo.ipynb): Provides hands-on Notebooks for crafting, launching, and evaluating various LLM jailbreak attacks in realistic settings.
@@ -145,7 +161,8 @@ Red Teaming Language Models with Language Models (Perez et al.): Explores automa
 Indirect Prompt Injection and Multi-Hop Reasoning Attacks: Papers on prompt injection and chained (multi-hop) attacks illustrate additional vectors for decomposing and reconstructing impermissible knowledge across queries.
 
 ### 6) ❓ Future Work: Accountability and Open Red Teaming
-- ✅ Answer: Problem Statement:
+- ✅ Answer: 
+Problem Statement:
 Current regulatory efforts are often limited by national boundaries, creating an uneven playing field where some organizations may take excessive risks to gain a competitive edge in AI. With AI development becoming a global race, the fundamental challenge is how to ensure responsible behavior and robust safety standards, especially when no single authority can enforce them internationally. Questions remain about who should hold leading tech organizations accountable and how to reliably verify their claims about safe model deployment.
 
 The Role of Red Teaming:
