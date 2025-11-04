@@ -149,20 +149,13 @@ In summary, this dataset offers a safe, structured, and scalable benchmark for a
 
 ### 5) ❓ Literature Search: Decomposition Attacks & Multi-Context Jailbreaking
 - ✅ Answer: 
-Additional References for Decomposition and Jailbreaking Attacks
-Zou et al., 2023. "Universal and Transferable Adversarial Attacks on Aligned Language Models" (arXiv:2307.15043): Proposes an automated, gradient-based method to generate adversarial prompt suffixes that reliably bypass alignment safeguards and transfer across multiple LLMs.
-
-LLM Attacks Demo (GitHub: llm-attacks/demo.ipynb): Provides hands-on Notebooks for crafting, launching, and evaluating various LLM jailbreak attacks in realistic settings.
-
-LLM Structured Prompt Attacks Repo (GitHub: llm-sp): Implements prompt decomposition and multi-step jailbreaks, enabling systematic testing and development of decomposition-based attacks.
-
-DrAttack: Prompt Decomposition and Reconstruction Makes Powerful LLM Jailbreakers: Describes highly effective jailbreaking techniques based on prompt decomposition and reconstruction to systematically defeat LLM safety filters.
-
-MasterKey: Automated Jailbreak Across Multiple Large Language Model Chatbots: Demonstrates multi-platform jailbreak automation, highlighting the risks and cross-model transferability of adversarial prompts.
-
-Red Teaming Language Models with Language Models (Perez et al.): Explores automated, scalable red-teaming approaches against LLMs, relevant for uncovering decomposition-based vulnerabilities.
-
-Indirect Prompt Injection and Multi-Hop Reasoning Attacks: Papers on prompt injection and chained (multi-hop) attacks illustrate additional vectors for decomposing and reconstructing impermissible knowledge across queries.
+- Zou et al., 2023 (arXiv:2307.15043): Universal, transferable adversarial suffixes for aligned LLMs.
+- LLM Attacks Demo (GitHub): Demonstration notebooks for studying jailbreak behaviors and evaluations.
+- LLM Structured Prompt Attacks (GitHub): Implementations for analyzing prompt decomposition and multi-step attack behaviors.
+- DrAttack: Decomposition/reconstruction-based jailbreak techniques with strong empirical performance.
+- MasterKey: Automated cross-model jailbreak evaluation, highlighting transferability risks.
+- Perez et al., Red Teaming Language Models with Language Models: Automated, scalable red teaming to surface vulnerabilities.
+- Indirect Prompt Injection and Multi-Hop Reasoning: Work on prompt injection and chained attacks showing additional decomposition vectors.
 
 ### 6) ❓ Future Work: Accountability and Open Red Teaming
 - ✅ Answer: 
