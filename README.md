@@ -2,22 +2,20 @@
 
 <p align="center">
   <img alt="CASI MATS" src="https://img.shields.io/badge/CASI--MATS-Application-4B8BF4?style=for-the-badge&logo=readme&logoColor=white" />
-  <img alt="Status" src="https://img.shields.io/badge/Status-Draft-yellow?style=for-the-badge" />
-  <img alt="Last Updated" src="https://img.shields.io/badge/Last_Updated-2025--11--02-lightgrey?style=for-the-badge" />
+<img alt="Status" src="https://img.shields.io/badge/Status-Submitted-green?style=for-the-badge" />
+<img alt="Last Updated" src="https://img.shields.io/badge/Last_Updated-2025--11--04-lightgrey?style=for-the-badge" />
 </p>
 
 > 📄 Purpose: This README consolidates and answers the questions from the CASI‑MATS application PDF for convenient review and submission.
 
-## 🧭 How to use this file
+## 🧠 Introduction
 
-- If the questions are not visible below, paste the questionnaire text from the PDF here or place the PDF inside this repository so it can be parsed automatically.
-- Once the questions are available, fill in each answer under the corresponding section.
-- Keep responses concise, specific, and within any stated word/character limits.
+I’m Barath Srinivasan, a researcher–engineer focused on AI safety, evaluation, and model governance, with a background spanning machine learning, systems engineering, and large-scale automation. At Carnegie Mellon University, I’m a Research Assistant and member of the CMU AI Safety Initiative, where I work on red-teaming and building safe, useful AI systems.
 
-## 🧩 Assumptions
+Previously at Wells Fargo, I built agentic AI systems that automated 23 % of incident resolutions across 10 + services, reducing MTTR by 70 % using RAG-based telemetry pipelines integrated with Splunk, Prometheus, and ServiceNow.
 
-- The PDF contains a set of short‑answer prompts (e.g., motivation, background, project idea, timeline, team, logistics).
-- This file is prepared with placeholders and icons; it can be updated in-place once the exact questions are extracted.
+Focus areas: LLMs, RAG architectures, structured-output APIs, LangGraph/MCP agents, and compositional safety frameworks.
+Goals at CASI-MATS: advance principled leakage metrics, capability–safety trade-off analyses, and open red-teaming benchmarks that promote transparent, accountable AI deployment.
 
 ---
 
