@@ -10,7 +10,7 @@
 
 ## 🧠 Introduction
 
-I’m Barath Srinivasan, a researcher–engineer focused on AI safety, evaluation, and model governance, with a background spanning machine learning, systems engineering, and large-scale automation. At Carnegie Mellon University, I’m a Research Assistant and member of the CMU AI Safety Initiative, where I work on red-teaming and building safe, useful AI systems.
+I’m Barath Srinivasan, a Master’s student in Computational Data Science at the School of Computer Science, Carnegie Mellon University, Research Fellow with the CMU AI Safety Initiative and Research Assistant at CMU. My work focuses on AI safety, model evaluation, and red-teaming, with an emphasis on building safe and useful AI systems. 
 
 Previously at Wells Fargo, I built agentic AI systems that automated 23 % of incident resolutions across 10 + services, reducing MTTR by 70 % using RAG-based telemetry pipelines integrated with Splunk, Prometheus, and ServiceNow.
 
