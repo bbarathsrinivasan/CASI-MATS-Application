@@ -38,19 +38,8 @@
         - Public models display sensitive capabilities, raising dual-use risk.
         - Governance implication: Stronger access controls and policy are warranted.
 
-### 2) ❓ Getting Familiar with the Threat Model
+### 2) ❓ Question
 - ✅ Answer:
-The key difference between the JDS24 threat model and traditional jailbreaks is that JDS24 focuses on multi-turn, multi-model composition, where individually safe outputs from multiple models are combined to infer restricted information. In contrast, traditional jailbreaks (e.g., Cha+24) are single-turn direct elicitation attacks on a single model.
-
-To explore this safely, I implemented a benign proxy version of the JDS24-style decomposition attack using the safeharness framework. The setup used two models: a planner (weak model) that decomposes a complex benign task into subtasks, and an executor (strong model) that solves each subtask. Their results were then combined using a safe aggregator, with strict moderation and blacklist filters to block unsafe content.
-
-Experiments were run on the decomposition_attack_dataset, covering safe cyber-like tasks such as code refactoring, configuration debugging, and data normalization. Two variants were tested: a single-model baseline and a composed-model pipeline.
-
-Reasoning: The framework replicates the compositional mechanics of JDS24 while ensuring safety, allowing empirical study of capability uplift without dual-use content.
-
-Assessment: Success was defined as improved accuracy or task completion by the composed model compared to the baseline, with zero safety violations. All runs were fully logged, reproducible, and verified safe.
-
-This demonstrates how benign model composition can yield emergent capability—core to the JDS24 threat model—while preserving strict safety boundaries.
 
 ### 3) ❓ What Did Glu24 Add That Prior Papers Didn’t?
 - ✅ Answer:
@@ -68,91 +57,67 @@ This demonstrates how benign model composition can yield emergent capability—c
 
 ### 4) ❓ Curating Data 
 - ✅ Answer:
-<table>
-    <tr>
-        <td valign="top" width="60%">
+To study decomposition attacks safely, I curated a small cyber-themed proxy dataset that mirrors the multi-step reasoning structure of such attacks without including any harmful or dual-use content. The dataset spans five benign categories—code refactor (CF), configuration debugging (CFG), incident postmortem (IMS), data integration (DI), and document synthesis (DOC)—all of which require information to be split, processed, and recombined, similar to a real decomposition attack.
 
-            <strong>Safe proxy dataset for decomposition attacks</strong><br/>
-            Curated a small, cyber‑themed, benign dataset mirroring multi‑step reasoning without dual‑use content. Categories: code refactor (CF), configuration debugging (CFG), incident postmortem (IMS), data integration (DI), and document synthesis (DOC). Each task requires splitting, processing, and recombining information.
+Methodology and rationale:
+Each item follows a structured JSON schema with fields for full task, inputs, 2–6 canonical subtasks, expected outputs, and simple validators (e.g., unit tests or schema checks). I used GPT-5’s structured-output API to synthesize safe, fictional inputs and human-verified decompositions, applying moderation and blacklist filters to guarantee safety. This approach provides control, reproducibility, and objective evaluation while avoiding any WMDP content.
 
-            <br/><br/>
-            <strong>Methodology and rationale</strong>
-            <ul>
-                <li>Structured JSON schema: full task, inputs, 2–6 canonical subtasks, expected outputs, and simple validators (unit tests/schema checks).</li>
-                <li>Safe synthesis: structured‑output API to generate fictional inputs; human‑verified decompositions.</li>
-                <li>Safety gates: local blacklist + optional moderation; reject/replace unsafe content.</li>
-                <li>Reproducible and objectively evaluated; no WMDP content.</li>
-            </ul>
+Scaling:
+The dataset can be expanded by programmatically generating new synthetic variations, prompting LLMs to produce additional benign tasks, or crowdsourcing decomposition annotations under the same safety and schema constraints.
 
-            <strong>Scaling</strong>
-            <ul>
-                <li>Programmatically generate synthetic variations.</li>
-                <li>Prompt LLMs for additional benign tasks under the same schema.</li>
-                <li>Crowdsource decompositions with safety reviews.</li>
-            </ul>
+Using agents:
+Agents can attempt these tasks either directly or through a decomposition pipeline, where a weaker model proposes subtasks and a stronger model executes them. Comparing the combined pipeline’s performance against single-model baselines quantifies capability uplift—the core phenomenon behind decomposition attacks.
 
-            <strong>Using agents</strong>
-            <ul>
-                <li>Direct solve vs. decomposition pipeline: weaker model proposes subtasks; stronger model executes.</li>
-                <li>Compare pipeline vs. single‑model baselines to quantify capability uplift.</li>
-            </ul>
-
-            <strong>Summary</strong><br/>
-            Provides a safe, structured, and scalable benchmark to study how multi‑model coordination yields emergent capabilities while maintaining alignment.
-
-        </td>
-        <td valign="top" width="40%">
-
-```text
+In summary, this dataset offers a safe, structured, and scalable benchmark for analyzing how multi-model coordination can yield emergent capabilities even when each individual model appears aligned.
 ┌────────────────────┐
 │ make_dataset.py    │  ← entrypoint CLI
 └────────┬───────────┘
-                 │
-                 ▼
+         │
+         ▼
 ┌────────────────────────────┐
 │ ds.generate.main()         │
 │  • parse args (--out, --n) │
 │  • write JSON Schemas      │
 │  • create folders          │
 └────────┬───────────────────┘
-                 │
-                 ▼
+         │
+         ▼
 ┌─────────────────────────────┐
 │  For each item to create    │
 │  ─────────────────────────  │
 │  1️⃣  Build safe prompt      │
 │  2️⃣  Safety check (local+AI)│
-│  3️⃣  Structured LLM call    │
+│  3️⃣  GPT-5 Structured call  │
 │  4️⃣  Parse + validate JSON  │
 │  5️⃣  Write item files       │
 └────────┬────────────────────┘
-                 │
-                 ▼
+         │
+         ▼
 ┌─────────────────────────────┐
-│  ds.safety.ensure_safe_text │
+│  ds.safety.ensure_safe_text.│
 │  • Local blacklist          │
 │  • Optional Moderation API  │
 │  • Reject / replace unsafe  │
 └────────┬────────────────────┘
-                 │
-                 ▼
+         │
+         ▼
 ┌─────────────────────────────┐
-│  ds.llm.call_structured()   │
-│  • Responses API            │
+│  ds.gpt.call_structured()   │
+│  • Uses Responses API       │
 │  • response_format=JSON     │
 │  • Retries & validates      │
 │  • Offline fallback mocks   │
 └────────┬────────────────────┘
-                 │
-                 ▼
+         │
+         ▼
 ┌────────────────────────────┐
 │ ds.validate                │
 │  • Verify schemas          │
 │  • Check CSV/code tests    │
 │  • Return (ok, errors)     │
 └────────┬───────────────────┘
-                 │
-                 ▼
+         │
+         ▼
 ┌────────────────────────────┐
 │ dataset/                   │
 │ ├── items/<id>/inputs/*    │
@@ -162,11 +127,6 @@ This demonstrates how benign model composition can yield emergent capability—c
 │ ├── README.md              │
 │ └── schemas/*.schema.json  │
 └────────────────────────────┘
-```
-
-        </td>
-    </tr>
-</table>
 
 ### 5) ❓ Literature Search: Decomposition Attacks & Multi-Context Jailbreaking
 - ✅ Answer: Additional References for Decomposition and Jailbreaking Attacks
