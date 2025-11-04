@@ -23,14 +23,14 @@ Goals at CASI-MATS: advance principled leakage metrics, capability–safety trad
 
 ### 1) ❓ Evidence for LM WMDP Capabilities: Virology Capabilities Test (VCT) Summary and Critique
 - ✅ Answer:
-    - Methodological gaps or limitations (brief)
+    - Methodological gaps or limitations
         - Tacit knowledge vs execution: Q&A success does not equal bench proficiency.
         - Unclear benchmark ceiling: Low expert scores obscure what “expert-level” means.
         - External validity limits: High scores may not translate to wet-lab effectiveness; practical tests needed.
         - Human baseline confounds: Modest expert scores may reflect format unfamiliarity.
         - Dual-use proxy limits: Troubleshooting scores do not directly indicate harm potential.
 
-    - Striking or concerning findings (brief)
+    - Striking or concerning findings 
         - LLMs outperform experts on difficult, “Google-proof” tasks.
         - Notable performance on tacit and visual reasoning questions.
         - Public models display sensitive capabilities, raising dual-use risk.
