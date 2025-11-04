@@ -40,19 +40,19 @@
 
 ### 2) ❓ Getting Familiar with the Threat Model
 - ✅ Answer:
-The key difference between the JDS24 threat model and traditional jailbreaks is that JDS24 focuses on multi-turn, multi-model composition, where individually safe outputs from multiple models are combined to infer restricted information. In contrast, traditional jailbreaks (e.g., Cha+24) are single-turn direct elicitation attacks on a single model.
+- The key difference between the JDS24 threat model and traditional jailbreaks is that JDS24 focuses on multi-turn, multi-model composition, where individually safe outputs from multiple models are combined to infer restricted information. In contrast, traditional jailbreaks (e.g., Cha+24) are single-turn direct elicitation attacks on a single model.
 
-To explore this safely, I implemented a benign proxy version of the JDS24-style decomposition attack using the safeharness framework. The setup used two models: a planner (weak model) that decomposes a complex benign task into subtasks, and an executor (strong model) that solves each subtask. Their results were then combined using a safe aggregator, with strict moderation and blacklist filters to block unsafe content.
+- To explore this safely, I implemented a benign proxy version of the JDS24-style decomposition attack using the safeharness framework. The setup used two models: a planner (weak model) that decomposes a complex benign task into subtasks, and an executor (strong model) that solves each subtask. Their results were then combined using a safe aggregator, with strict moderation and blacklist filters to block unsafe content.
 
-Experiments were run on the decomposition_attack_dataset, covering safe cyber-like tasks such as code refactoring, configuration debugging, and data normalization. Two variants were tested: a single-model baseline and a composed-model pipeline.
+- Experiments were run on the decomposition_attack_dataset, covering safe cyber-like tasks such as code refactoring, configuration debugging, and data normalization. Two variants were tested: a single-model baseline and a composed-model pipeline.
 
-Reasoning: The framework replicates the compositional mechanics of JDS24 while ensuring safety, allowing empirical study of capability uplift without dual-use content.
+- Reasoning: The framework replicates the compositional mechanics of JDS24 while ensuring safety, allowing empirical study of capability uplift without dual-use content.
 
-Assessment: Success was defined as improved accuracy or task completion by the composed model compared to the baseline, with zero safety violations. All runs were fully logged, reproducible, and verified safe.
+- Assessment: Success was defined as improved accuracy or task completion by the composed model compared to the baseline, with zero safety violations. All runs were fully logged, reproducible, and verified safe.
 
-This demonstrates how benign model composition can yield emergent capability—core to the JDS24 threat model—while preserving strict safety boundaries.
+- This demonstrates how benign model composition can yield emergent capability—core to the JDS24 threat model—while preserving strict safety boundaries.
 
-As a related validation, I replicated a controlled, offline jailbreak of GPT‑2 using the universal adversarial suffix method from Zou et al. (2023) to study decomposition-style leakage in a benign proxy setup; no production systems were targeted. Reference: https://arxiv.org/abs/2307.15043
+- As a related validation, I replicated a controlled, offline jailbreak of GPT‑2 using the universal adversarial suffix method from Zou et al. (2023) to study decomposition-style leakage in a benign proxy setup; no production systems were targeted. Reference: https://arxiv.org/abs/2307.15043
 https://colab.research.google.com/drive/119BEN0MqrBo1SrI6f6XKdn7lParAbYSB#scrollTo=wkPKFP7pdraA
 
 
@@ -71,19 +71,19 @@ https://colab.research.google.com/drive/119BEN0MqrBo1SrI6f6XKdn7lParAbYSB#scroll
     - Derives limits showing that capping leakage typically reduces utility, formalizing the trade-off.
 
 ### 4) ❓ Curating Data 
-- ✅ Answer:
-To study decomposition attacks safely, I curated a small cyber-themed proxy dataset that mirrors the multi-step reasoning structure of such attacks without including any harmful or dual-use content. The dataset spans five benign categories—code refactor (CF), configuration debugging (CFG), incident postmortem (IMS), data integration (DI), and document synthesis (DOC)—all of which require information to be split, processed, and recombined, similar to a real decomposition attack.
+- ✅ Answer
+- To study decomposition attacks safely, I curated a small cyber-themed proxy dataset that mirrors the multi-step reasoning structure of such attacks without including any harmful or dual-use content. The dataset spans five benign categories—code refactor (CF), configuration debugging (CFG), incident postmortem (IMS), data integration (DI), and document synthesis (DOC)—all of which require information to be split, processed, and recombined, similar to a real decomposition attack.
 
-Methodology and rationale:
-Each item follows a structured JSON schema with fields for full task, inputs, 2–6 canonical subtasks, expected outputs, and simple validators (e.g., unit tests or schema checks). I used GPT-5’s structured-output API to synthesize safe, fictional inputs and human-verified decompositions, applying moderation and blacklist filters to guarantee safety. This approach provides control, reproducibility, and objective evaluation while avoiding any WMDP content.
+- Methodology and rationale:
+  Each item follows a structured JSON schema with fields for full task, inputs, 2–6 canonical subtasks, expected outputs, and simple validators (e.g., unit tests or schema checks). I used GPT-5’s structured-output API to synthesize safe, fictional inputs and human-verified decompositions, applying moderation and blacklist filters to guarantee safety. This approach provides control, reproducibility, and objective evaluation while avoiding any WMDP content.
 
-Scaling:
-The dataset can be expanded by programmatically generating new synthetic variations, prompting LLMs to produce additional benign tasks, or crowdsourcing decomposition annotations under the same safety and schema constraints.
+- Scaling:
+  The dataset can be expanded by programmatically generating new synthetic variations, prompting LLMs to produce additional benign tasks, or crowdsourcing decomposition annotations under the same safety and schema constraints.
 
-Using agents:
-Agents can attempt these tasks either directly or through a decomposition pipeline, where a weaker model proposes subtasks and a stronger model executes them. Comparing the combined pipeline’s performance against single-model baselines quantifies capability uplift—the core phenomenon behind decomposition attacks.
+- Using agents:
+  Agents can attempt these tasks either directly or through a decomposition pipeline, where a weaker model proposes subtasks and a stronger model executes them. Comparing the combined pipeline’s performance against single-model baselines quantifies capability uplift—the core phenomenon behind decomposition attacks.
 
-In summary, this dataset offers a safe, structured, and scalable benchmark for analyzing how multi-model coordination can yield emergent capabilities even when each individual model appears aligned.
+  In summary, this dataset offers a safe, structured, and scalable benchmark for analyzing how multi-model coordination can yield emergent capabilities even when each individual model appears aligned.
 <div align="center">
 <pre>
 ┌────────────────────┐
@@ -159,13 +159,13 @@ In summary, this dataset offers a safe, structured, and scalable benchmark for a
 
 ### 6) ❓ Future Work: Accountability and Open Red Teaming
 - ✅ Answer: 
-Problem Statement:
+- Problem Statement:
 Current regulatory efforts are often limited by national boundaries, creating an uneven playing field where some organizations may take excessive risks to gain a competitive edge in AI. With AI development becoming a global race, the fundamental challenge is how to ensure responsible behavior and robust safety standards, especially when no single authority can enforce them internationally. Questions remain about who should hold leading tech organizations accountable and how to reliably verify their claims about safe model deployment.
 
-The Role of Red Teaming:
+- The Role of Red Teaming:
 Comprehensive red teaming systematically probing for vulnerabilities and simulating real-world attacks is a critical way to uncover hidden safety risks in AI models. Identifying and reporting these vulnerabilities not only improves technical robustness but also builds trust with the public. Accountability cannot rely solely on regulation; broad scrutiny and transparent testing are needed to keep organizations honest.
 
-An Open Red Teaming Framework:
+- An Open Red Teaming Framework:
 As a future direction, I am working on an open "red teaming marketplace" a collaborative, public platform where anyone can rigorously test and evaluate deployed models. This approach aims to make safety verification transparent and reputationally meaningful, so companies that submit their models for public evaluation can earn a distinct trust signal. The long-term vision is to establish a universal, community-driven framework, akin to the open-source model in software, where public testing and accountability become standard in the AI ecosystem.
 
 ---
