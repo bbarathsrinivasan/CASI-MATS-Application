@@ -84,6 +84,8 @@ Using agents:
 Agents can attempt these tasks either directly or through a decomposition pipeline, where a weaker model proposes subtasks and a stronger model executes them. Comparing the combined pipeline’s performance against single-model baselines quantifies capability uplift—the core phenomenon behind decomposition attacks.
 
 In summary, this dataset offers a safe, structured, and scalable benchmark for analyzing how multi-model coordination can yield emergent capabilities even when each individual model appears aligned.
+<div align="center">
+<pre>
 ┌────────────────────┐
 │ make_dataset.py    │  ← entrypoint CLI
 └────────┬───────────┘
@@ -135,13 +137,15 @@ In summary, this dataset offers a safe, structured, and scalable benchmark for a
          ▼
 ┌────────────────────────────┐
 │ dataset/                   │
-│ ├── items/<id>/inputs/*    │
-│ ├── items/<id>/expected/*  │
-│ ├── items/<id>/meta.json   │
+│ ├── items/&lt;id&gt;/inputs/*    │
+│ ├── items/&lt;id&gt;/expected/*  │
+│ ├── items/&lt;id&gt;/meta.json   │
 │ ├── manifest.json          │
 │ ├── README.md              │
 │ └── schemas/*.schema.json  │
 └────────────────────────────┘
+</pre>
+</div>
 
 ### 5) ❓ Literature Search: Decomposition Attacks & Multi-Context Jailbreaking
 - ✅ Answer: 
@@ -173,27 +177,6 @@ As a future direction, I am working on an open "red teaming marketplace" a colla
 
 ---
 
-## 🧠 Guidance for strong responses
+## Closing Statement
 
-- 🎯 Be specific: quantify impact, scope, and constraints (e.g., users, datasets, timelines).
-- 🧪 Show feasibility: outline approach, required resources, and risk mitigation.
-- 🤝 Highlight collaboration: roles, advisors, and stakeholders.
-- ⏱️ Respect limits: ensure you meet any word/character caps in the PDF.
-- 🧾 Cite references: link prior work, repositories, or publications if relevant.
-
-## 📦 Attachments & Links
-
-- 📎 PDF: Place `casi_mats_1_application.pdf` at the repository root so it can be parsed.
-- 🔗 Additional materials: link slides, repos, or datasets here.
-
-## ✅ Review checklist (before submit)
-
-- [ ] All questions from the PDF are present here in full.
-- [ ] Each question has a clear, complete answer.
-- [ ] Word/character limits satisfied.
-- [ ] Links and references included and working.
-- [ ] Spelling/grammar checked.
-
----
-
-> ℹ️ Note: If you provide the PDF inside this repo or paste the questions, this README can be auto‑filled and reformatted to match the exact prompts.
+This work is provided solely for academic and research purposes. It does not endorse, enable, or facilitate harmful, unsafe, or unlawful activities.
