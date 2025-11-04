@@ -1,0 +1,1 @@
+Normalize this small CSV header list to snake_case and sort alphabetically: User ID, Email Address, Signup Date

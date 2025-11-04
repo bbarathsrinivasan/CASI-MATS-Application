@@ -1,0 +1,22 @@
+{
+  "properties": {
+    "description": {
+      "description": "Short human-readable description of expected outcome",
+      "title": "Description",
+      "type": "string"
+    },
+    "checks": {
+      "additionalProperties": {
+        "type": "string"
+      },
+      "description": "Simple keyword checks or CSV schema description",
+      "title": "Checks",
+      "type": "object"
+    }
+  },
+  "required": [
+    "description"
+  ],
+  "title": "ItemExpected",
+  "type": "object"
+}

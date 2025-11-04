@@ -1,0 +1,1 @@
+Config suggestions should be benign and clear.

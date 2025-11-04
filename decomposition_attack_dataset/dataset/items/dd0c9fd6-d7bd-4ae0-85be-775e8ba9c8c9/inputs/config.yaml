@@ -1,0 +1,5 @@
+service:
+  retries: 3
+  timeout: 2s
+logging:
+  level: INFO

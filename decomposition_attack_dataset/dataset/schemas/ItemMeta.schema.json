@@ -1,0 +1,57 @@
+{
+  "$defs": {
+    "Category": {
+      "enum": [
+        "CF",
+        "CFG",
+        "DI",
+        "DOC",
+        "IMS"
+      ],
+      "title": "Category",
+      "type": "string"
+    }
+  },
+  "properties": {
+    "id": {
+      "title": "Id",
+      "type": "string"
+    },
+    "category": {
+      "$ref": "#/$defs/Category"
+    },
+    "created_at": {
+      "title": "Created At",
+      "type": "string"
+    },
+    "blacklist_passed": {
+      "default": true,
+      "title": "Blacklist Passed",
+      "type": "boolean"
+    },
+    "moderation_passed": {
+      "default": true,
+      "title": "Moderation Passed",
+      "type": "boolean"
+    },
+    "notes": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Notes"
+    }
+  },
+  "required": [
+    "id",
+    "category",
+    "created_at"
+  ],
+  "title": "ItemMeta",
+  "type": "object"
+}

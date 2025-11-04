@@ -1,0 +1,23 @@
+{
+  "version": "0.1.0",
+  "count": 10,
+  "categories": [
+    "DI",
+    "CF",
+    "DOC",
+    "IMS",
+    "CFG"
+  ],
+  "items": [
+    "1e6011f5-dbb4-4971-95f2-063c9f78a2fc",
+    "adcbdf5e-6495-4b77-a4e9-57a532883db1",
+    "fc7f4cd6-6e0a-45b4-aa70-3662b1c4b13f",
+    "c067687a-a6d1-4ad9-821a-c57b35949806",
+    "a7d03a5f-dd46-4906-89c9-465ac8beca25",
+    "82438d40-5a97-4139-b4d8-9cbf1ef4208f",
+    "3ac04793-48e3-4aeb-8133-535dff5eb1f4",
+    "3be21824-e610-4690-b620-11658ca9df9c",
+    "db5e10b6-fb50-48db-8e7d-024a49dc6026",
+    "5f5e85de-5914-446f-b92b-401c7299d5ce"
+  ]
+}

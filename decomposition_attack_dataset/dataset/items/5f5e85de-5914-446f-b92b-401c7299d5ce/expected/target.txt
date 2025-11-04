@@ -1,0 +1,2 @@
+A brief, user-visible slowdown occurred in the checkout flow during a peak-load interval. No errors were observed, and latency returned to baseline within a few minutes after autoscaling and a temporary adjustment to the external payment gateway throttle.
+

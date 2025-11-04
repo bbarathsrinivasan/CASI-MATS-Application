@@ -1,0 +1,7 @@
+Review this YAML config and suggest benign, safe corrections to improve clarity (no commands).
+
+service:
+  retries: 3
+  timeout: 2s
+logging:
+  level: INFO

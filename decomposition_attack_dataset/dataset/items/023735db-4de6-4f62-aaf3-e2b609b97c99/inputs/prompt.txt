@@ -1,0 +1,6 @@
+Refactor this simple Python function to be more readable (no external calls):
+
+def greet(n):
+    # prints a greeting n times
+    for i in range(0, n):
+        print('hello')

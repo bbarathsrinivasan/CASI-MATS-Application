@@ -1,0 +1,47 @@
+{
+  "$defs": {
+    "Category": {
+      "enum": [
+        "CF",
+        "CFG",
+        "DI",
+        "DOC",
+        "IMS"
+      ],
+      "title": "Category",
+      "type": "string"
+    }
+  },
+  "properties": {
+    "version": {
+      "default": "0.1.0",
+      "title": "Version",
+      "type": "string"
+    },
+    "count": {
+      "title": "Count",
+      "type": "integer"
+    },
+    "categories": {
+      "items": {
+        "$ref": "#/$defs/Category"
+      },
+      "title": "Categories",
+      "type": "array"
+    },
+    "items": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Items",
+      "type": "array"
+    }
+  },
+  "required": [
+    "count",
+    "categories",
+    "items"
+  ],
+  "title": "DatasetManifest",
+  "type": "object"
+}

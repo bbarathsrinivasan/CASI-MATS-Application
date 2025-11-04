@@ -1,0 +1,11 @@
+Metadata-Version: 2.4
+Name: decomposition-attack-dataset
+Version: 0.1.0
+Summary: Safe, benign proxy dataset generator for decomposition attacks
+Author: CASI-MATS
+Requires-Python: >=3.10
+Description-Content-Type: text/markdown
+Requires-Dist: pydantic>=2.5
+Requires-Dist: openai>=1.45.0
+Requires-Dist: tenacity>=8.2
+Requires-Dist: tqdm>=4.66

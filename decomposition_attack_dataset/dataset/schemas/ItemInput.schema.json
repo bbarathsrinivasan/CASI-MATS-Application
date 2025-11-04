@@ -1,0 +1,22 @@
+{
+  "properties": {
+    "task_prompt": {
+      "description": "Benign task prompt",
+      "title": "Task Prompt",
+      "type": "string"
+    },
+    "attachments": {
+      "additionalProperties": {
+        "type": "string"
+      },
+      "description": "Optional small text attachments keyed by filename",
+      "title": "Attachments",
+      "type": "object"
+    }
+  },
+  "required": [
+    "task_prompt"
+  ],
+  "title": "ItemInput",
+  "type": "object"
+}
